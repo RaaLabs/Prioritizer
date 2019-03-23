@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using Dolittle.Edge.Modules.Booting;
 
-namespace Dolittle.Edge.IdentityMapper
+namespace Dolittle.Edge.TimeSeriesPrioritizer
 {
     class Program
     {
