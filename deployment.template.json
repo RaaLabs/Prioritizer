@@ -1,0 +1,106 @@
+{
+    "$schema-template": "1.0.0",
+    "modulesContent": {
+        "$edgeAgent": {
+            "properties.desired": {
+                "schemaVersion": "1.0",
+                "runtime": {
+                    "type": "docker",
+                    "settings": {
+                        "minDockerVersion": "v1.25",
+                        "loggingOptions": "",
+                        "registryCredentials": {}
+                    }
+                },
+                "systemModules": {
+                    "edgeAgent": {
+                        "type": "docker",
+                        "env": {
+                            "RuntimeLogLevel": "debug"
+                        },
+                        "settings": {
+                            "image": "mcr.microsoft.com/azureiotedge-agent:1.0",
+                            "createOptions": {}
+                        }
+                    },
+                    "edgeHub": {
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "settings": {
+                            "image": "mcr.microsoft.com/azureiotedge-hub:1.0",
+                            "createOptions": {
+                                "HostConfig": {
+                                    "PortBindings": {
+                                        "5671/tcp": [
+                                            {
+                                                "HostPort": "5671"
+                                            }
+                                        ],
+                                        "8883/tcp": [
+                                            {
+                                                "HostPort": "8883"
+                                            }
+                                        ],
+                                        "443/tcp": [
+                                            {
+                                                "HostPort": "443"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "modules": {
+                    "TimeSeriesPrioritizer": {
+                        "version": "1.0",
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "settings": {
+                            "image": "${MODULES.TimeSeriesPrioritizer}",
+                            "createOptions": {
+                                "HostConfig": {}
+                            }
+                        }
+                    },
+                    "TimeSeriesSimulator": {
+                        "version": "1.0",
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "settings": {
+                            "image": "dolittle/edge-timeseriessimulator:1.0.3-amd64",
+                            "createOptions": {
+                                "HostConfig": {
+                                    "PortBindings": {
+                                        "80/tcp": [
+                                            {
+                                                "HostPort": "8181"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+    
+                }
+            }
+        },
+        "$edgeHub": {
+            "properties.desired": {
+                "schemaVersion": "1.0",
+                "routes": {
+                    "TimeSeriesSimulatorToTimeSeriesPrioritizer": "FROM /messages/modules/TimeSeriesSimulator/outputs/events INTO BrokeredEndpoint(\"/modules/TimeSeriesPrioritizer/inputs/events\")",
+                    "TimeSeriesPrioritizerIoTHub": "FROM /messages/modules/TimeSeriesPrioritizer/outputs/prioritized INTO $upstream"
+                },
+                "storeAndForwardConfiguration": {
+                    "timeToLiveSecs": 7200
+                }
+            }
+        }
+    }
+}
