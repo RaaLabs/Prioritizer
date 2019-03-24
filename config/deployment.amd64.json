@@ -49,7 +49,7 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "dolittle/edge-timeseriessimulator:1.0.3-amd64",
+              "image": "dolittle/edge-timeseriessimulator:1.0.4-amd64",
               "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"80/tcp\":[{\"HostPort\":\"8181\"}]}}}"
             }
           }
@@ -60,7 +60,7 @@
       "properties.desired": {
         "schemaVersion": "1.0",
         "routes": {
-          "TimeSeriesSimulatorToTimeSeriesPrioritizer": "FROM /messages/modules/TimeSeriesSimulator/outputs/events INTO BrokeredEndpoint(\"/modules/TimeSeriesPrioritizer/inputs/events\")",
+          "TimeSeriesSimulatorToTimeSeriesPrioritizer": "FROM /messages/modules/TimeSeriesSimulator/outputs/timeseries INTO BrokeredEndpoint(\"/modules/TimeSeriesPrioritizer/inputs/events\")",
           "TimeSeriesPrioritizerIoTHub": "FROM /messages/modules/TimeSeriesPrioritizer/outputs/prioritized INTO $upstream"
         },
         "storeAndForwardConfiguration": {
