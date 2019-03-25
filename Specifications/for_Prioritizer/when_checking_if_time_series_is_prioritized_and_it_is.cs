@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
+using Dolittle.Edge.Modules;
 using Machine.Specifications;
 
 namespace Dolittle.Edge.TimeSeriesPrioritizer.for_Prioritizer
@@ -16,7 +17,7 @@ namespace Dolittle.Edge.TimeSeriesPrioritizer.for_Prioritizer
         protected static Prioritizer prioritizer;
         protected static bool result;
 
-        Establish context = () => prioritizer = new Prioritizer(new PrioritizerConfiguration(new TimeSeriesId[] {
+        Establish context = () => prioritizer = new Prioritizer(new PrioritizerConfiguration(new TimeSeries[] {
             first_prioritized_tag, second_prioritized_tag, third_prioritized_tag
         }));
 

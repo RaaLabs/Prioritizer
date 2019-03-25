@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System.IO;
 using System.Linq;
+using Dolittle.Edge.Modules;
 using Dolittle.IO;
 using Dolittle.Serialization.Json;
 
@@ -26,9 +27,9 @@ namespace Dolittle.Edge.TimeSeriesPrioritizer
         }
 
         /// <inheritdoc/>
-        public bool IsPrioritized(TimeSeriesId timeSeriesId)
+        public bool IsPrioritized(TimeSeries timeSeries)
         {
-            return _configuration.Prioritized.Contains(timeSeriesId);
+            return _configuration.Prioritized.Contains(timeSeries);
         }
     }
 }
