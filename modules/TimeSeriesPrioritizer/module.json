@@ -4,7 +4,7 @@
     "image": {
         "repository": "dolittle/edge-timeseriesprioritizer",
         "tag": {
-            "version": "1.0.2",
+            "version": "1.0.4",
             "platforms": {
                 "amd64": "./Dockerfile"
             }
