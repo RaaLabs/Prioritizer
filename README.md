@@ -46,7 +46,7 @@ In addition to this there is a couple of Debug launch settings set up as well to
 
 ### Visual Studio 201x
 
-Open up the [.sln](./TimeSeriesPrioritizer.sln) file at the root of the project.
+Open up the [.sln](./Prioritizer.sln) file at the root of the project.
 
 ## Deploying
 
@@ -56,13 +56,13 @@ In your `deployment.json` file, you will need to add the module. For more detail
 
 ```json
 "modules": {
-    "Dolittle.Edge.TimeSeriesPrioritizer": {
+    "Dolittle.TimeSeries.Prioritizer": {
     "version": "1.0",
     "type": "docker",
     "status": "running",
     "restartPolicy": "always",
     "settings": {
-        "image": "dolittle/edge-timeseriesprioritizer",
+        "image": "dolittle/edge-Prioritizer",
         "createOptions": {
         "HostConfig": {}
     }
@@ -80,7 +80,7 @@ volume binding.
 
 ```json
 "Binds": [
-    "/etc/dolittle.edge/timeseriesprioritizer:/app/data"
+    "/etc/Dolittle.TimeSeries/Prioritizer:/app/data"
 ]
 ```
 
@@ -88,17 +88,17 @@ This should result in something like:
 
 ```json
 "modules": {
-    "Dolittle.Edge.TimeSeriesPrioritizer": {
+    "Dolittle.TimeSeries.Prioritizer": {
     "version": "1.0",
     "type": "docker",
     "status": "running",
     "restartPolicy": "always",
     "settings": {
-        "image": "dolittle/edge-timeseriesprioritizer",
+        "image": "dolittle/edge-Prioritizer",
         "createOptions": {
         "HostConfig": {
             "Binds": [
-                "/etc/dolittle.edge/timeseriesprioritizer:/app/data"
+                "/etc/Dolittle.TimeSeries/Prioritizer:/app/data"
             ]
         }
     }

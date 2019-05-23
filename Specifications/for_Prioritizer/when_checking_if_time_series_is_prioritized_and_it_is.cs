@@ -3,10 +3,10 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
-using Dolittle.Edge.Modules;
+using Dolittle.TimeSeries.Modules;
 using Machine.Specifications;
 
-namespace Dolittle.Edge.TimeSeriesPrioritizer.for_Prioritizer
+namespace Dolittle.TimeSeries.Prioritizer.for_Prioritizer
 {
     public class when_checking_if_time_series_is_prioritized_and_it_is
     {
@@ -17,7 +17,7 @@ namespace Dolittle.Edge.TimeSeriesPrioritizer.for_Prioritizer
         protected static Prioritizer prioritizer;
         protected static bool result;
 
-        Establish context = () => prioritizer = new Prioritizer(new PrioritizerConfiguration(new TimeSeries[] {
+        Establish context = () => prioritizer = new Prioritizer(new PrioritizerConfiguration(new Dolittle.TimeSeries.Modules.TimeSeries[] {
             first_prioritized_tag, second_prioritized_tag, third_prioritized_tag
         }));
 

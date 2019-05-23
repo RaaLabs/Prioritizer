@@ -5,12 +5,12 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using Dolittle.Edge.Modules;
+using Dolittle.TimeSeries.Modules;
 using Dolittle.Logging;
 using Dolittle.Serialization.Json;
 using Microsoft.Azure.Devices.Client;
 
-namespace Dolittle.Edge.TimeSeriesPrioritizer
+namespace Dolittle.TimeSeries.Prioritizer
 {
 
     /// <summary>

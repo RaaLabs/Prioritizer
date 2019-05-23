@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 using System.IO;
 using System.Linq;
-using Dolittle.Edge.Modules;
+using Dolittle.TimeSeries.Modules;
 using Dolittle.IO;
 using Dolittle.Serialization.Json;
 
-namespace Dolittle.Edge.TimeSeriesPrioritizer
+namespace Dolittle.TimeSeries.Prioritizer
 {
     /// <summary>
     /// Represents an implementation of <see cref="IPrioritizer"/>
@@ -27,7 +27,7 @@ namespace Dolittle.Edge.TimeSeriesPrioritizer
         }
 
         /// <inheritdoc/>
-        public bool IsPrioritized(TimeSeries timeSeries)
+        public bool IsPrioritized(Dolittle.TimeSeries.Modules.TimeSeries timeSeries)
         {
             return _configuration.Prioritized.Contains(timeSeries);
         }

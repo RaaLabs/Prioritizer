@@ -3,9 +3,9 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Dolittle.Edge.Modules;
+using Dolittle.TimeSeries.Modules;
 
-namespace Dolittle.Edge.TimeSeriesPrioritizer
+namespace Dolittle.TimeSeries.Prioritizer
 {
     /// <summary>
     /// Defines a system that can prioritize timeseries based on their <see cref="TimeSeries"/>
@@ -15,8 +15,8 @@ namespace Dolittle.Edge.TimeSeriesPrioritizer
         /// <summary>
         /// Check if timeseries is prioritized or not
         /// </summary>
-        /// <param name="timeSeries"><see cref="TimeSeries"/> to check</param>
+        /// <param name="timeSeries"><see cref="Dolittle.TimeSeries.Modules.TimeSeries"/> to check</param>
         /// <returns>True if prioritized, false if not</returns>
-        bool IsPrioritized(TimeSeries timeSeries);
+        bool IsPrioritized(Dolittle.TimeSeries.Modules.TimeSeries timeSeries);
     }
 }

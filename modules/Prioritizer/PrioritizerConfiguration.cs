@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
 using Dolittle.Configuration;
-using Dolittle.Edge.Modules;
+using Dolittle.TimeSeries.Modules;
 
-namespace Dolittle.Edge.TimeSeriesPrioritizer
+namespace Dolittle.TimeSeries.Prioritizer
 {
     /// <summary>
     /// Represents the configuration for the prioritizer
@@ -18,7 +18,7 @@ namespace Dolittle.Edge.TimeSeriesPrioritizer
         /// Initializes a new instance of <see cref="PrioritizerConfiguration"/>
         /// </summary>
         /// <param name="prioritized"></param>
-        public PrioritizerConfiguration(IEnumerable<TimeSeries> prioritized)
+        public PrioritizerConfiguration(IEnumerable<Dolittle.TimeSeries.Modules.TimeSeries> prioritized)
         {
             Prioritized = prioritized;
         }
@@ -26,6 +26,6 @@ namespace Dolittle.Edge.TimeSeriesPrioritizer
         /// <summary>
         /// Gets the prioritized timeseries
         /// </summary>
-        public IEnumerable<TimeSeries> Prioritized { get; }
+        public IEnumerable<Dolittle.TimeSeries.Modules.TimeSeries> Prioritized { get; }
     }
 }

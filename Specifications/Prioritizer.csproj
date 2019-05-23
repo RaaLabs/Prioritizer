@@ -4,11 +4,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <AssemblyName>Dolittle.Edge.TimeSeriesPrioritizer.Specs</AssemblyName>
+    <AssemblyName>Dolittle.TimeSeries.Prioritizer.Specs</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../modules/TimeSeriesPrioritizer/TimeSeriesPrioritizer.csproj"/>
+    <ProjectReference Include="../modules/Prioritizer/Prioritizer.csproj"/>
   </ItemGroup>
 
 </Project>

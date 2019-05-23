@@ -26,7 +26,7 @@
           "quoteArgs": true
         },
         "sourceFileMap": {
-          "/app": "${workspaceFolder}/modules/TimeSeriesPrioritizer"
+          "/app": "${workspaceFolder}/modules/Prioritizer"
         },
         "justMyCode": true
       },
@@ -34,9 +34,9 @@
         "name": "IdentityMapper Local Debug (.NET Core)",
         "type": "coreclr",
         "request": "launch",
-        "program": "${workspaceRoot}/modules/TimeSeriesPrioritizer/bin/Debug/netcoreapp2.1/Dolittle.Edge.TimeSeriesPrioritizer.dll",
+        "program": "${workspaceRoot}/modules/Prioritizer/bin/Debug/netcoreapp2.1/Dolittle.TimeSeries.Prioritizer.dll",
         "args": [],
-        "cwd": "${workspaceRoot}/modules/TimeSeriesPrioritizer",
+        "cwd": "${workspaceRoot}/modules/Prioritizer",
         "internalConsoleOptions": "openOnSessionStart",
         "stopAtEntry": false,
         "console": "internalConsole",

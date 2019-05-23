@@ -33,23 +33,23 @@
           }
         },
         "modules": {
-          "TimeSeriesPrioritizer": {
+          "Prioritizer": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "dolittle/edge-timeseriesprioritizer:1.0.4-amd64",
+              "image": "dolittle/edge-Prioritizer:1.0.4-amd64",
               "createOptions": "{\"HostConfig\":{}}"
             }
           },
-          "TimeSeriesSimulator": {
+          "Simulator": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "dolittle/edge-timeseriessimulator:1.0.9-amd64",
+              "image": "dolittle/edge-Simulator:1.0.9-amd64",
               "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"80/tcp\":[{\"HostPort\":\"8181\"}]}}}"
             }
           }
@@ -60,8 +60,8 @@
       "properties.desired": {
         "schemaVersion": "1.0",
         "routes": {
-          "TimeSeriesSimulatorToTimeSeriesPrioritizer": "FROM /messages/modules/TimeSeriesSimulator/outputs/timeseries INTO BrokeredEndpoint(\"/modules/TimeSeriesPrioritizer/inputs/events\")",
-          "TimeSeriesPrioritizerIoTHub": "FROM /messages/modules/TimeSeriesPrioritizer/outputs/prioritized INTO $upstream"
+          "SimulatorToPrioritizer": "FROM /messages/modules/Simulator/outputs/timeseries INTO BrokeredEndpoint(\"/modules/Prioritizer/inputs/events\")",
+          "PrioritizerIoTHub": "FROM /messages/modules/Prioritizer/outputs/prioritized INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200
