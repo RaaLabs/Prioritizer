@@ -4,19 +4,19 @@ WORKDIR /app
 VOLUME [ "/app/data" ]
 
 COPY Build/MSBuild/* ./Build/MSBuild/
-COPY modules/Prioritizer/*.csproj ./modules/Prioritizer/
+COPY Source/*.csproj ./Source/
 
-WORKDIR /app/modules/Prioritizer
+WORKDIR /app/Source
 
 RUN dotnet restore
 
-COPY modules/Prioritizer/ ./
+COPY Source/ ./
 RUN dotnet publish -c Release -o out
 
 FROM microsoft/dotnet:2.1-runtime-stretch-slim
 WORKDIR /app
-COPY --from=build-env /app/modules/Prioritizer/out ./
-COPY --from=build-env /app/modules/Prioritizer/data ./data
+COPY --from=build-env /app/Source/out ./
+COPY --from=build-env /app/Source/data ./data
 
 RUN useradd -ms /bin/bash moduleuser
 USER moduleuser
