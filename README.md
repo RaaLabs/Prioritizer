@@ -64,7 +64,7 @@ In your `deployment.json` file, you will need to add the module. For more detail
     "status": "running",
     "restartPolicy": "always",
     "settings": {
-        "image": "dolittle/edge-Prioritizer",
+        "image": "dolittle/timeseries-prioritizer",
         "createOptions": {
         "HostConfig": {}
     }
@@ -82,7 +82,7 @@ volume binding.
 
 ```json
 "Binds": [
-    "/etc/Dolittle.TimeSeries/Prioritizer:/app/data"
+    "/etc/Dolittle.timeseries/prioritizer:/app/data"
 ]
 ```
 
@@ -96,11 +96,11 @@ This should result in something like:
     "status": "running",
     "restartPolicy": "always",
     "settings": {
-        "image": "dolittle/edge-Prioritizer",
+        "image": "dolittle/timeseries-prioritizer",
         "createOptions": {
         "HostConfig": {
             "Binds": [
-                "/etc/Dolittle.TimeSeries/Prioritizer:/app/data"
+                "/etc/dolittle.timeseries/prioritizer:/app/data"
             ]
         }
     }
