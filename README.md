@@ -96,11 +96,11 @@ This should result in something like:
     "status": "running",
     "restartPolicy": "always",
     "settings": {
-        "image": "dolittle/timeseries-prioritizer",
+        "image": "shipos/timeseries-prioritizer",
         "createOptions": {
         "HostConfig": {
             "Binds": [
-                "/etc/dolittle.timeseries/prioritizer:/app/data"
+                "/etc/raalabs.timeseries/prioritizer:/app/data"
             ]
         }
     }

@@ -3,7 +3,7 @@ WORKDIR /app
 
 VOLUME [ "/app/data" ]
 
-COPY Build/MSBuild/* ./Build/MSBuild/
+COPY default.props ./default.props
 COPY Source/*.csproj ./Source/
 
 WORKDIR /app/Source
@@ -21,4 +21,4 @@ COPY --from=build-env /app/Source/data ./data
 RUN useradd -ms /bin/bash moduleuser
 USER moduleuser
 
-ENTRYPOINT ["dotnet", "Dolittle.TimeSeries.Prioritizer.dll"]
+ENTRYPOINT ["dotnet", "RaaLabs.TimeSeries.Prioritizer.dll"]

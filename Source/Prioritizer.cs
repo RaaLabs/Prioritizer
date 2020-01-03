@@ -1,14 +1,14 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) Dolittle. All rights reserved.
+ *  Copyright (c) RaaLabs. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System.IO;
 using System.Linq;
-using Dolittle.TimeSeries.Modules;
+using RaaLabs.TimeSeries.Modules;
 using Dolittle.IO;
 using Dolittle.Serialization.Json;
 
-namespace Dolittle.TimeSeries.Prioritizer
+namespace RaaLabs.TimeSeries.Prioritizer
 {
     /// <summary>
     /// Represents an implementation of <see cref="IPrioritizer"/>
@@ -27,7 +27,7 @@ namespace Dolittle.TimeSeries.Prioritizer
         }
 
         /// <inheritdoc/>
-        public bool IsPrioritized(Dolittle.TimeSeries.Modules.TimeSeries timeSeries)
+        public bool IsPrioritized(RaaLabs.TimeSeries.TimeSeries timeSeries)
         {
             return _configuration.Prioritized.Contains(timeSeries);
         }

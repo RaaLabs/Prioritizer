@@ -4,7 +4,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp2.1</TargetFramework>
-        <AssemblyName>Dolittle.TimeSeries.Prioritizer</AssemblyName>
+        <AssemblyName>RaaLabs.TimeSeries.Prioritizer</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Dolittle.TimeSeries.Modules" Version="2.*" />
+        <PackageReference Include="RaaLabs.TimeSeries.Modules" Version="6.*" />
     </ItemGroup>
 </Project>

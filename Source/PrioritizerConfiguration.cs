@@ -1,12 +1,12 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) Dolittle. All rights reserved.
+ *  Copyright (c) RaaLabs. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
 using Dolittle.Configuration;
-using Dolittle.TimeSeries.Modules;
+using RaaLabs.TimeSeries.Modules;
 
-namespace Dolittle.TimeSeries.Prioritizer
+namespace RaaLabs.TimeSeries.Prioritizer
 {
     /// <summary>
     /// Represents the configuration for the prioritizer
@@ -18,7 +18,7 @@ namespace Dolittle.TimeSeries.Prioritizer
         /// Initializes a new instance of <see cref="PrioritizerConfiguration"/>
         /// </summary>
         /// <param name="prioritized"></param>
-        public PrioritizerConfiguration(IEnumerable<Dolittle.TimeSeries.Modules.TimeSeries> prioritized)
+        public PrioritizerConfiguration(IEnumerable<RaaLabs.TimeSeries.TimeSeries> prioritized)
         {
             Prioritized = prioritized;
         }
@@ -26,6 +26,6 @@ namespace Dolittle.TimeSeries.Prioritizer
         /// <summary>
         /// Gets the prioritized timeseries
         /// </summary>
-        public IEnumerable<Dolittle.TimeSeries.Modules.TimeSeries> Prioritized { get; }
+        public IEnumerable<RaaLabs.TimeSeries.TimeSeries> Prioritized { get; }
     }
 }

@@ -1,16 +1,15 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) Dolittle. All rights reserved.
+ *  Copyright (c) RaaLabs. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using Dolittle.TimeSeries.Modules;
+using RaaLabs.TimeSeries.Modules;
 using Dolittle.Logging;
 using Dolittle.Serialization.Json;
-using Microsoft.Azure.Devices.Client;
 
-namespace Dolittle.TimeSeries.Prioritizer
+namespace RaaLabs.TimeSeries.Prioritizer
 {
 
     /// <summary>
