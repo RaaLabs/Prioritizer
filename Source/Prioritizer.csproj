@@ -13,5 +13,6 @@
 
     <ItemGroup>
         <PackageReference Include="RaaLabs.TimeSeries.Modules" Version="6.*" />
+        <PackageReference Include="RaaLabs.TimeSeries.Modules.IoTEdge" Version="6.*" />
     </ItemGroup>
 </Project>
