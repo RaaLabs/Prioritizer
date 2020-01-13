@@ -1,8 +1,6 @@
 FROM microsoft/dotnet:2.1-sdk AS build-env
 WORKDIR /app
 
-VOLUME [ "/app/data" ]
-
 COPY default.props ./default.props
 COPY Source/*.csproj ./Source/
 
