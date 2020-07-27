@@ -35,5 +35,5 @@ stages:
     jobs:
       - job: "DockerPush"
         steps:
-        - bash: echo "$(imageName):$(versionTag)"
+        - bash: echo "$(imageName):$(versionTag) "
 
