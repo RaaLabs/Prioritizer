@@ -9,4 +9,4 @@ resources:
       endpoint: RaaLabs
 
 jobs:
-  - template: AzureDevOps/DotNet/pipeline.yml
+  - template: AzureDevOps/DotNet/pipeline.yml@templates
