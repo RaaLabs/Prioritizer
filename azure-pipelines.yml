@@ -1,6 +1,9 @@
 trigger:
   - master
 
+variables:
+  image: "shipos/timeseries-prioritizer"
+
 resources:
   repositories:
     - repository: templates
@@ -10,3 +13,5 @@ resources:
 
 jobs:
   - template: AzureDevOps/DotNet/pipeline.yml@templates
+    parameters:
+      image: ${{ variables.image }}
