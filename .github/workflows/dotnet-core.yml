@@ -7,9 +7,14 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  ci:
+    name: Integration
     runs-on: ubuntu-latest
+    outputs:
+      should-publish: ${{ steps.context.outputs.should-publish }}
+      current-version: ${{ steps.context.outputs.current-version }}
+      release-type: ${{ steps.context.outputs.release-type }}
+      cascading-release: ${{ steps.context.outputs.cascading-release }}
 
     steps:
     - uses: actions/checkout@v2
