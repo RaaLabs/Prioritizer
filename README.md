@@ -1,6 +1,7 @@
 # Time Series Prioritizer
 
 ![CI/CD](https://github.com/RaaLabs/Prioritizer/workflows/.NET%20Core/badge.svg)
+[![codecov](https://codecov.io/gh/Raalabs/Prioritizer/branch/master/graph/badge.svg)](https://codecov.io/gh/Raalabs/Prioritizer)
 
 ## Cloning
 
