@@ -12,7 +12,7 @@ namespace RaaLabs.TimeSeries.Prioritizer
     /// Represents the configuration for the prioritizer
     /// </summary>
     [Name("configuration")]
-    public class PrioritizerConfiguration : IConfigurationObject
+    public class PrioritizerConfiguration : IConfigurationObject, ITriggerAppRestartOnChange
     {
         /// <summary>
         /// Initializes a new instance of <see cref="PrioritizerConfiguration"/>
