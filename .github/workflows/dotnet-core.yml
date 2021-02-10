@@ -92,5 +92,5 @@ jobs:
       with:
         sonarProjectKey: raalabs_prioritizer
         sonarProjectName:  Prioritizer
-        sonarOrganization: raalabs
+        sonarOrganization: RaaLabs
         
