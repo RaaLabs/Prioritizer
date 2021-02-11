@@ -4,6 +4,8 @@ env:
   PRERELEASE_BRANCHES: experimental,alpha,beta,rc # Comma separated list of prerelease branch names. 'alpha,rc, ...'
   DOCKER_HUB_REPO: shipos/timeseries-prioritizer #  The docker hub repo to push to
   COVERAGE_FOLDER: Coverage
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
   push:
@@ -84,4 +86,11 @@ jobs:
       run: bash <(curl -s https://codecov.io/bash) -f "$FILE_PATH"
       env:
         FILE_PATH: ${{ github.workspace }}/${{ env.COVERAGE_FOLDER }}/coverage.opencover.xml
+
+    - name: SonarScanner for .NET Core with pull request decoration support
+      uses: highbyte/sonarscan-dotnet@1.0.2
+      with:
+        sonarProjectKey: RaaLabs_Prioritizer
+        sonarProjectName:  Prioritizer
+        sonarOrganization: raalabs
         
