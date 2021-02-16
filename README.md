@@ -3,6 +3,7 @@
 ![CI/CD](https://github.com/RaaLabs/Prioritizer/workflows/.NET%20Core/badge.svg)
 [![codecov](https://codecov.io/gh/Raalabs/Prioritizer/branch/master/graph/badge.svg)](https://codecov.io/gh/Raalabs/Prioritizer)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RaaLabs_Prioritizer&metric=alert_status)](https://sonarcloud.io/dashboard?id=RaaLabs_Prioritizer)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=RaaLabs_Prioritizer&metric=coverage)](https://sonarcloud.io/dashboard?id=RaaLabs_Prioritizer)
 
 
 ## Cloning
