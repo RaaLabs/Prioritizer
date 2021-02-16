@@ -10,7 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="../Source/Prioritizer.csproj"/>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-    <PackageReference Include="coverlet.collector" Version="1.2.0">
+    <PackageReference Include="coverlet.collector" Version="3.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
