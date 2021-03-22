@@ -4,16 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 using System.IO;
 using System.Linq;
-using RaaLabs.TimeSeries.Modules;
-using Dolittle.IO;
-using Dolittle.Serialization.Json;
 
-namespace RaaLabs.TimeSeries.Prioritizer
+
+namespace RaaLabs.Edge.Prioritizer
 {
     /// <summary>
-    /// Represents an implementation of <see cref="IPrioritizer"/>
+    /// 
     /// </summary>
-    public class Prioritizer : IPrioritizer
+    public class Prioritizer
     {
         readonly PrioritizerConfiguration _configuration;
 
@@ -27,7 +25,7 @@ namespace RaaLabs.TimeSeries.Prioritizer
         }
 
         /// <inheritdoc/>
-        public bool IsPrioritized(RaaLabs.TimeSeries.TimeSeries timeSeries)
+        public bool IsPrioritized(string timeSeries)
         {
             return _configuration.Prioritized.Contains(timeSeries);
         }
