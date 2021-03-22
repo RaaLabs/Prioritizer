@@ -11,7 +11,6 @@ using RaaLabs.Edge.Prioritizer.events;
 using RaaLabs.Edge.Modules.EdgeHub;
 using Autofac;
 using System.Collections.Generic;
-using System;
 
 namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
 {
@@ -58,6 +57,7 @@ namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
 
         }
 
+        // TODO add system integration test. Need to extend NullIotModuleClient to include outputname
         [Then(@"the following prioritized events are produced")]
         public void ThenTheFollowingPrioritizedEventsAreProduced(Table table)
         {
@@ -65,9 +65,7 @@ namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
             foreach (var sentMessage in client.MessagesSent)
             {
                 
-                Console.WriteLine(sentMessage);
             }
-                2.Should().Be(1);
             /*foreach (var (sentMessage, expectedMessage) in client.MessagesSent.Zip(table.Rows))
             {
                 var sent = JsonConvert.DeserializeObject<EdgeHubDataPointRemapped>(sentMessage);
