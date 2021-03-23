@@ -68,11 +68,8 @@ namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
             {
                 var prioritizedMessage = sentMessage.Value;
                 prioritizedMessage.Should().Be(expectedMessage["OutputName"]);
-
-
             }
         }
-
     }
 
 }

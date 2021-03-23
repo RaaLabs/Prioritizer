@@ -14,5 +14,6 @@
     <PackageReference Include="RaaLabs.Edge.Modules.EdgeHub" Version="1.0.1" />
     <PackageReference Include="RaaLabs.Edge.Modules.Configuration" Version="1.0.1" />
   </ItemGroup>
-
+  
 </Project>
+
