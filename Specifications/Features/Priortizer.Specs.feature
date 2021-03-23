@@ -25,6 +25,3 @@ Feature: Prioritizer
             | nonprior-itiz-ed51-9600-ce074398604e |
             | nonprior-itiz-edd8-a399-8b1595aeac02 |
 
-#Scenario: Put your Scenario here
-#    When Put your Action here
-#    Then Put your Condition here
