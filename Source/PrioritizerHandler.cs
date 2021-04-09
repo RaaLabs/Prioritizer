@@ -11,7 +11,6 @@ using Serilog;
 
 namespace RaaLabs.Edge.Prioritizer
 {
-
     public class PrioritizerHandler : IConsumeEvent<EdgeHubDataPointReceived>, IProduceEvent<EdgeHubDataPointPrioritized>, IProduceEvent<EdgeHubDataPointNonPrioritized>
     {
         private readonly ILogger _logger;
@@ -33,7 +32,7 @@ namespace RaaLabs.Edge.Prioritizer
             _prioritizer = prioritizer;
             _logger = logger;
         }
-
+        
          public void Handle(EdgeHubDataPointReceived @event)
         {
             if (_prioritizer.IsPrioritized(@event.Timeseries))
