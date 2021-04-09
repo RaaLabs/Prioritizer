@@ -1,83 +1,36 @@
-# Time Series Prioritizer
+# Prioritizer
 
-![CI/CD](https://github.com/RaaLabs/Prioritizer/workflows/.NET%20Core/badge.svg)
-[![codecov](https://codecov.io/gh/Raalabs/Prioritizer/branch/master/graph/badge.svg)](https://codecov.io/gh/Raalabs/Prioritizer)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RaaLabs_Prioritizer&metric=alert_status)](https://sonarcloud.io/dashboard?id=RaaLabs_Prioritizer)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=RaaLabs_Prioritizer&metric=coverage)](https://sonarcloud.io/dashboard?id=RaaLabs_Prioritizer)
 
+This document describes the Priortizer module for RaaLabs Edge.
 
-## Cloning
+## What does it do?
 
-This repository has sub modules, clone it with:
+Priortizer listens to messages received from IdentityMapper with the property `[InputName("events")]` and are producing the events `[OutputName("prioritized")]` and `[OutputName("nonprioritized")]` based on if the timeseries is present in the configuration.
 
-```shell
-$ git clone --recursive <repository url>
-```
+## Configuration
 
-If you've already cloned it, you can get the submodules by doing the following:
-
-```shell
-$ git submodule update --init --recursive
-```
-
-## Building
-
-All the build things are from a submodule.
-To build, run one of the following:
-
-Windows:
-
-```shell
-$ Build\build.cmd
-```
-
-Linux / macOS
-
-```shell
-$ Build\build.sh
-```
-
-## Getting started
-
-This solution is built on top of [Azure IoT Edge](https://github.com/Azure/iotedge), and to be able to work locally and run it locally, you will need the development
-environment - read more about that [here](https://docs.microsoft.com/en-us/azure/iot-edge/development-environment).
-It mentions the use of the [iotedgedev](https://github.com/Azure/iotedgedev) tool.
-
-### VSCode
-
-If you are using VSCode or similar text editor, just open up the folder from the root. This solution uses a [sub-module](https://github.com/dolittle-tools/DotNET.Build) (as described above).
-It comes with a few things that makes development a little bit easier, a set of VSCode tasks as described [here](https://github.com/dolittle-tools/DotNET.Build#visual-studio-code-tasks).
-
-In addition to this there is a couple of Debug launch settings set up as well to enable debugging directly.
-
-### Visual Studio 201x
-
-Open up the [.sln](./Prioritizer.sln) file at the root of the project.
-
-## Deploying
-
-### Module
-
-In your `deployment.json` file, you will need to add the module. For more details on modules in IoT Edge, go [here](https://docs.microsoft.com/en-us/azure/iot-edge/module-composition).
+The Prioritizer is configured using a json file like the one below. If an `[InputName("events")]` with the attribute Timeseries contains in the list it will generate prioritized event.  
 
 ```json
-"modules": {
-    "Dolittle.TimeSeries.Prioritizer": {
-    "version": "1.0",
-    "type": "docker",
-    "status": "running",
-    "restartPolicy": "always",
-    "settings": {
-        "image": "dolittle/timeseries-prioritizer",
-        "createOptions": {
-        "HostConfig": {}
-    }
+{
+    "prioritized": [
+        "c51ff4fc-13ad-4dae-bc78-e82fa2887847",
+        "ea63e51d-7d3a-47c4-be17-447b8cb32d0d",
+        "9f332679-2e5b-41a8-ab97-585e2d376214",
+        "633696dc-bc35-4b7c-9607-e0ea53a90914",
+        "437ac116-1328-4fe2-bf10-2dc8b5b67c2b"
+    ]
 }
 ```
 
-### State
+## IoT Edge Deployment
 
-The module depends has persistent state and it is assuming that this is in the `data` folder relative to where the binary is running.
+### $edgeAgent
+
+In your `deployment.json` file, you will need to add the module. For more details on modules in IoT Edge, go [here](https://docs.microsoft.com/en-us/azure/iot-edge/module-composition).
+
+The module has persistent state and it is assuming that this is in the `data` folder relative to where the binary is running.
 Since this is running in a containerized environment, the state is not persistent between runs. To get this state persistent, you'll
 need to configure the deployment to mount a folder on the host into the data folder.
 
@@ -86,27 +39,41 @@ volume binding.
 
 ```json
 "Binds": [
-    "/etc/Dolittle.timeseries/prioritizer:/app/data"
+    "<mount-path>:/app/data"
 ]
 ```
 
-This should result in something like:
+```json
+{
+    "modulesContent": {
+        "$edgeAgent": {
+            "properties.desired.modules.Prioritizer": {
+                "settings": {
+                    "image": "<repo-name>/prioritizer:<tag>",
+                    "createOptions": "{\"HostConfig\":{\"Binds\":[\"<mount-path>:/app/data\"]}}"
+                },
+                "type": "docker",
+                "version": "1.0",
+                "status": "running",
+                "restartPolicy": "always"
+            }
+        }
+    }
+}
+```
+
+For production setup the bind mount can be replaced by a docker volume.
+
+### $edgeHub
+
+The routes in edgeHub can be specified like the example below. The *prioritized* events are sent to *PrioritizedModule* and *nonprioritized* events are sent to *NonPrioritizedModule*. 
 
 ```json
-"modules": {
-    "Dolittle.TimeSeries.Prioritizer": {
-    "version": "1.0",
-    "type": "docker",
-    "status": "running",
-    "restartPolicy": "always",
-    "settings": {
-        "image": "shipos/timeseries-prioritizer",
-        "createOptions": {
-        "HostConfig": {
-            "Binds": [
-                "/etc/raalabs.timeseries/prioritizer:/app/data"
-            ]
-        }
+{
+    "$edgeHub": {
+        "properties.desired.routes.<InputModule>ToPrioritizer": "FROM /messages/modules/<InputModule>/outputs/<outputevent> INTO BrokeredEndpoint(\"/modules/Prioritizer/inputs/events\")",
+        "properties.desired.routes.PrioritizerTo<PrioritizedModule>": "FROM /messages/modules/Prioritizer/outputs/prioritized INTO BrokeredEndpoint(\"/modules/<PrioritizedModule>/inputs/<inputevent>\")",
+        "properties.desired.routes.PrioritizerTo<NonPrioritizedModule>": "FROM /messages/modules/Prioritizer/outputs/nonprioritized INTO BrokeredEndpoint(\"/modules/<NonPrioritizedModule>/inputs/<inputevent>\")"
     }
 }
 ```

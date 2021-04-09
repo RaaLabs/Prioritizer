@@ -5,22 +5,19 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using RaaLabs.TimeSeries.Modules;
-using Dolittle.Logging;
-using Dolittle.Serialization.Json;
+using RaaLabs.Edge.Modules.EventHandling;
+using RaaLabs.Edge.Prioritizer.events;
+using Serilog;
 
-namespace RaaLabs.TimeSeries.Prioritizer
+namespace RaaLabs.Edge.Prioritizer
 {
 
-    /// <summary>
-    /// Represents a <see cref="ICanHandleDataPoint{T}">message handler</see> for prioritizing timeseries
-    /// </summary>
-    public class PrioritizerHandler : ICanHandleDataPoint<object>
+    public class PrioritizerHandler : IConsumeEvent<EdgeHubDataPointReceived>, IProduceEvent<EdgeHubDataPointPrioritized>, IProduceEvent<EdgeHubDataPointNonPrioritized>
     {
-        readonly ISerializer _serializer;
-        readonly ILogger _logger;
-        readonly IPrioritizer _prioritizer;
-        private readonly ICommunicationClient _client;
+        private readonly ILogger _logger;
+        private readonly Prioritizer _prioritizer;
+        public event EventEmitter<EdgeHubDataPointPrioritized> SendPrioritizedEvent;
+        public event EventEmitter<EdgeHubDataPointNonPrioritized> SendNonPrioritizedEvent;
 
         /// <summary>
         /// Initializes a new instance of <see cref="PrioritizerHandler"/>
@@ -30,35 +27,27 @@ namespace RaaLabs.TimeSeries.Prioritizer
         /// <param name="prioritizer"><see cref="IPrioritizer"/> for dealing with prioritization</param>
         /// <param name="client"><see cref="ICommunicationClient"/> for dealing with messaging</param>
         public PrioritizerHandler(
-            ISerializer serializer,
-            ILogger logger,
-            IPrioritizer prioritizer,
-            ICommunicationClient client)
+            Prioritizer prioritizer,
+            ILogger logger)
         {
-            _serializer = serializer;
-            _logger = logger;
             _prioritizer = prioritizer;
-            _client = client;
+            _logger = logger;
         }
 
-        /// <inheritdoc/>
-        public Input Input => "events";
-
-        /// <inheritdoc/>
-        public async Task Handle(DataPoint<dynamic> dataPoint)
+         public void Handle(EdgeHubDataPointReceived @event)
         {
-            if (_prioritizer.IsPrioritized(dataPoint.TimeSeries))
+            if (_prioritizer.IsPrioritized(@event.Timeseries))
             {
                 _logger.Information("Datapoint prioritized");
-                await _client.SendAsJson("prioritized", dataPoint);
+                var prioritizedDataPoint = new EdgeHubDataPointPrioritized(@event.Timeseries, @event.Value, @event.Timestamp);
+                SendPrioritizedEvent(prioritizedDataPoint);                
             }
             else
             {
                 _logger.Information("Datapoint not prioritized");
-                await _client.SendAsJson("nonprioritized", dataPoint);
+                var nonPrioritizedDataPoint = new EdgeHubDataPointNonPrioritized(@event.Timeseries, @event.Value, @event.Timestamp);
+                SendNonPrioritizedEvent(nonPrioritizedDataPoint);
             }
-
-            await Task.CompletedTask;
         }
     }
 }
