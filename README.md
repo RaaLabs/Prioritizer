@@ -8,7 +8,6 @@ This document describes the Priortizer module for RaaLabs Edge.
 
 Priortizer listens to messages received from IdentityMapper with the property `[InputName("events")]` and are producing the events `[OutputName("prioritized")]` and `[OutputName("nonprioritized")]` based on if the timeseries is present in the configuration.
 
-
 ## Configuration
 
 The Prioritizer is configured using a json file like the one below. If an `[InputName("events")]` with the attribute Timeseries contains in the list it will generate prioritized event.  
@@ -27,11 +26,11 @@ The Prioritizer is configured using a json file like the one below. If an `[Inpu
 
 ## IoT Edge Deployment
 
-
 ### $edgeAgent
+
 In your `deployment.json` file, you will need to add the module. For more details on modules in IoT Edge, go [here](https://docs.microsoft.com/en-us/azure/iot-edge/module-composition).
 
-The module depends has persistent state and it is assuming that this is in the `data` folder relative to where the binary is running.
+The module has persistent state and it is assuming that this is in the `data` folder relative to where the binary is running.
 Since this is running in a containerized environment, the state is not persistent between runs. To get this state persistent, you'll
 need to configure the deployment to mount a folder on the host into the data folder.
 
