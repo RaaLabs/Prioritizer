@@ -17,7 +17,7 @@ namespace RaaLabs.Edge.Prioritizer
         {
             Run().Wait();
         }
-
+        
         private static async Task Run()
         {
             var application = new ApplicationBuilder()
