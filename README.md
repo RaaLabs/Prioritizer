@@ -1,5 +1,6 @@
 # Prioritizer
-
+[![.NET 5.0](https://github.com/RaaLabs/Prioritizer/actions/workflows/dotnet.yml/badge.svg)](https://github.com/RaaLabs/Prioritizer/actions/workflows/dotnet.yml)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=RaaLabs_Prioritizer&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=RaaLabs_Prioritizer)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=RaaLabs_Prioritizer&metric=coverage)](https://sonarcloud.io/dashboard?id=RaaLabs_Prioritizer)
 
 This document describes the Priortizer module for RaaLabs Edge.
