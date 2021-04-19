@@ -1,17 +1,16 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) RaaLabs. All rights reserved.
- *  Licensed under the MIT License. See LICENSE in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
+// Copyright (c) RaaLabs. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using TechTalk.SpecFlow;
 using System.Linq;
 using FluentAssertions;
 using RaaLabs.Edge.Prioritizer.Specs.Drivers;
 using Newtonsoft.Json;
-using RaaLabs.Edge.Prioritizer.events;
+using RaaLabs.Edge.Prioritizer.Events;
 using RaaLabs.Edge.Modules.EdgeHub;
 using Autofac;
 using System.Collections.Generic;
-using System;
+using System.Globalization;
 
 namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
 {
@@ -50,8 +49,8 @@ namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
                 var incomingEvent = new EdgeHubDataPointReceived
                 {
                     Timeseries = row["Timeseries"],
-                    Value = float.Parse(row["Value"]),
-                    Timestamp = long.Parse(row["Timestamp"])
+                    Value = float.Parse(row["Value"], CultureInfo.InvariantCulture.NumberFormat),
+                    Timestamp = long.Parse(row["Timestamp"], CultureInfo.InvariantCulture.NumberFormat)
                 };
                 client.SimulateIncomingEvent("events", JsonConvert.SerializeObject(incomingEvent));
             }

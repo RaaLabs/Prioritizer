@@ -1,4 +1,5 @@
-
+// Copyright (c) RaaLabs. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System.Collections.Generic;
 using RaaLabs.Edge.Modules.Configuration;
@@ -23,8 +24,6 @@ namespace RaaLabs.Edge.Prioritizer
         /// <summary>
         /// Gets the prioritized timeseries
         /// </summary>
-        public IEnumerable<string> Prioritized { get; }
-
+        public IEnumerable<string> Prioritized { get; }
     }
-
 }

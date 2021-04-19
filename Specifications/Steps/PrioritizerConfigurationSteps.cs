@@ -1,8 +1,9 @@
+// Copyright (c) RaaLabs. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using TechTalk.SpecFlow;
 using System.Linq;
 using BoDi;
-using Serilog;
 using System.Collections.Generic;
 
 namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
