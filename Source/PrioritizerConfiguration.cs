@@ -10,6 +10,7 @@ namespace RaaLabs.Edge.Prioritizer
     /// Represents the configuration for the prioritizer
     /// </summary>
     [Name("configuration.json")]
+    [RestartOnChange]
     public class PrioritizerConfiguration : IConfiguration
     {
         /// <summary>
