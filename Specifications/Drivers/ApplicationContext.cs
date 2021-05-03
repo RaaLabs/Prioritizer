@@ -1,5 +1,7 @@
-﻿using Autofac;
-using RaaLabs.Edge;
+﻿// Copyright (c) RaaLabs. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using Autofac;
 using RaaLabs.Edge.Modules.EdgeHub;
 using RaaLabs.Edge.Modules.EventHandling;
 using RaaLabs.Edge.Modules.Configuration;

@@ -1,9 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿// Copyright (c) RaaLabs. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using RaaLabs.Edge.Modules.EdgeHub;
 
-namespace RaaLabs.Edge.Prioritizer.events
+namespace RaaLabs.Edge.Prioritizer.Events
 {
-    [ExcludeFromCodeCoverage]
     [OutputName("prioritized")]
     public class EdgeHubDataPointPrioritized : IEdgeHubOutgoingEvent
     {

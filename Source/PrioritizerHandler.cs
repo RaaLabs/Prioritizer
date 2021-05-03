@@ -1,12 +1,8 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) RaaLabs. All rights reserved.
- *  Licensed under the MIT License. See LICENSE in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-using System;
-using System.Text;
-using System.Threading.Tasks;
+// Copyright (c) RaaLabs. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using RaaLabs.Edge.Modules.EventHandling;
-using RaaLabs.Edge.Prioritizer.events;
+using RaaLabs.Edge.Prioritizer.Events;
 using Serilog;
 
 namespace RaaLabs.Edge.Prioritizer
@@ -21,10 +17,8 @@ namespace RaaLabs.Edge.Prioritizer
         /// <summary>
         /// Initializes a new instance of <see cref="PrioritizerHandler"/>
         /// </summary>
-        /// <param name="serializer"><see cref="ISerializer">JSON serializer</see></param>
+        /// <param name="prioritizer"><see cref="Prioritizer"/> for dealing with prioritization</param>
         /// <param name="logger"><see cref="ILogger"/> used for logging</param>
-        /// <param name="prioritizer"><see cref="IPrioritizer"/> for dealing with prioritization</param>
-        /// <param name="client"><see cref="ICommunicationClient"/> for dealing with messaging</param>
         public PrioritizerHandler(
             Prioritizer prioritizer,
             ILogger logger)

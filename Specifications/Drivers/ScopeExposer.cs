@@ -1,7 +1,8 @@
-using Autofac;
-using RaaLabs.Edge;
-using System.Threading.Tasks;
+// Copyright (c) RaaLabs. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Autofac;
+using System.Threading.Tasks;
 
 namespace RaaLabs.Edge.Prioritizer.Specs.Drivers
 {
