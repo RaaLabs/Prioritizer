@@ -12,16 +12,16 @@ Feature: System integration
 
     Scenario: Incoming event
         When the following events are received
-            | Timeseries                           | Value   | Timestamp     |
+            | TimeSeries                           | Value   | Timestamp     |
             | b9cd4c34-6d3b-4f74-9be9-f44b4fab2d4c | 12.1    | 1616400494883 |
             | 84acff21-e288-4111-af50-79e4224535a0 | 12.1    | 1616400494882 |
             | 5c9d2bf0-7740-4551-9600-ce074398604e | 11232.1 | 1616400494881 |
-            | sauron                               | 12      | 1616400494885 |
-            | gandalf                              | 12.1    | 1616400494883 |
+            | 4aacc3fa-48e2-4f35-b77e-a5541e7a2a86 | 12      | 1616400494885 |
+            | 7aa03352-1afe-4a57-82d4-90794f4c29e4 | 12.1    | 1616400494883 |
         Then the following events are produced
-            | Timeseries                           | Value   | Timestamp     | OutputName     |
+            | TimeSeries                           | Value   | Timestamp     | OutputName     |
             | b9cd4c34-6d3b-4f74-9be9-f44b4fab2d4c | 12.1    | 1616400494883 | prioritized    |
             | 84acff21-e288-4111-af50-79e4224535a0 | 12.1    | 1616400494882 | prioritized    |
             | 5c9d2bf0-7740-4551-9600-ce074398604e | 11232.1 | 1616400494881 | prioritized    |
-            | sauron                               | 12      | 1616400494885 | nonprioritized |
-            | gandalf                              | 12.1    | 1616400494883 | nonprioritized |
+            | 4aacc3fa-48e2-4f35-b77e-a5541e7a2a86 | 12      | 1616400494885 | nonprioritized |
+            | 7aa03352-1afe-4a57-82d4-90794f4c29e4 | 12.1    | 1616400494883 | nonprioritized |

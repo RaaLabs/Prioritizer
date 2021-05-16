@@ -5,6 +5,7 @@ using TechTalk.SpecFlow;
 using System.Linq;
 using BoDi;
 using System.Collections.Generic;
+using System;
 
 namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
 {
@@ -20,7 +21,7 @@ namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
         [Given(@"the prioritized timeseries")]
         public void GivenThePrioritizedTimeseries(Table table)
         {
-            IEnumerable<string> prioritized = table.Rows.Select(row => row["prioritized"]);
+            IEnumerable<Guid> prioritized = table.Rows.Select(row => Guid.Parse(row["prioritized"]));
             var prioritizer = new PrioritizerConfiguration(prioritized);
             _container.RegisterInstanceAs<PrioritizerConfiguration>(prioritizer); 
         }

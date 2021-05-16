@@ -1,6 +1,7 @@
 // Copyright (c) RaaLabs. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using System;
 using System.Linq;
 
 namespace RaaLabs.Edge.Prioritizer
@@ -26,7 +27,7 @@ namespace RaaLabs.Edge.Prioritizer
         /// </summary>
         /// <param name="timeSeries">unique identifier</param>
         /// <returns>True if prioritized, false if not</returns>
-        public bool IsPrioritized(string timeSeries)
+        public bool IsPrioritized(Guid timeSeries)
         {
             return _configuration.Prioritized.Contains(timeSeries);
         }

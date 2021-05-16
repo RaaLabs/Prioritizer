@@ -1,6 +1,7 @@
 // Copyright (c) RaaLabs. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Generic;
 using RaaLabs.Edge.Modules.Configuration;
 
@@ -17,7 +18,7 @@ namespace RaaLabs.Edge.Prioritizer
         /// Initializes a new instance of <see cref="PrioritizerConfiguration"/>
         /// </summary>
         /// <param name="prioritized"></param>
-        public PrioritizerConfiguration(IEnumerable<string> prioritized)
+        public PrioritizerConfiguration(IEnumerable<Guid> prioritized)
         {
             Prioritized = prioritized;
         }
@@ -25,6 +26,6 @@ namespace RaaLabs.Edge.Prioritizer
         /// <summary>
         /// Gets the prioritized timeseries
         /// </summary>
-        public IEnumerable<string> Prioritized { get; }
+        public IEnumerable<Guid> Prioritized { get; }
     }
 }
