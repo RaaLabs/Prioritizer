@@ -1,3 +1,4 @@
 **/obj
 **/bin
 **Dockerfile
+**/configuration.json
