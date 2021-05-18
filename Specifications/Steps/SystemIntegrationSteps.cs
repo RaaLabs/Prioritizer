@@ -11,6 +11,7 @@ using RaaLabs.Edge.Modules.EdgeHub;
 using Autofac;
 using System.Collections.Generic;
 using System.Globalization;
+using System;
 
 namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
 {
@@ -28,7 +29,7 @@ namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
         [Given(@"a config file with the following mapping")]
         public void GivenAConfigFileWithThefollowingMapping(Table table)
         {
-            IEnumerable<string> prioritized = table.Rows.Select(row => row["prioritized"]);
+            IEnumerable<Guid> prioritized = table.Rows.Select(row => Guid.Parse(row["prioritized"]));
             var prioritizer = new PrioritizerConfiguration(prioritized);
             var file = JsonConvert.SerializeObject(prioritizer);
             _appContext.AddConfigurationFile("data/configuration.json", file);
@@ -48,13 +49,12 @@ namespace RaaLabs.Edge.Prioritizer.Specs.StepDefinitions
             {
                 var incomingEvent = new EdgeHubDataPointReceived
                 {
-                    Timeseries = row["Timeseries"],
+                    TimeSeries = Guid.Parse(row["TimeSeries"]),
                     Value = float.Parse(row["Value"], CultureInfo.InvariantCulture.NumberFormat),
                     Timestamp = long.Parse(row["Timestamp"], CultureInfo.InvariantCulture.NumberFormat)
                 };
                 client.SimulateIncomingEvent("events", JsonConvert.SerializeObject(incomingEvent));
             }
-
         }
 
         [Then(@"the following events are produced")]
